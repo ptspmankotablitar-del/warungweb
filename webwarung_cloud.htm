@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Sawah Bu Ning Turi Kepuharjo - Kuliner Tradisional Malang</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QRCode.js Library untuk generate QR Code secara dinamis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sawah: {
+                            50: '#f4f7f4',
+                            100: '#e3eae3',
+                            500: '#3a6338',
+                            600: '#2d502b',
+                            700: '#233f22',
+                            800: '#1a3019',
+                        },
+                        bambu: {
+                            100: '#f7f3eb',
+                            200: '#ece2d0',
+                            500: '#b89252',
+                            700: '#7c5a2b',
+                            800: '#523a1a',
+                        },
+                        earth: '#fdfbf7'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-earth text-gray-800 font-sans antialiased selection:bg-sawah-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- NAVIGASI UTAMA -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-sawah-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-full bg-sawah-600 text-amber-300 flex items-center justify-center font-bold text-2xl shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-sawah-800 leading-tight">Warung Sawah</h1>
+                    <p class="text-xs font-semibold text-sawah-700 tracking-wider uppercase">Bu Ning Turi • Kepuharjo</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-sawah-800">
+                <a href="#beranda" class="hover:text-sawah-500 transition-colors">Beranda</a>
+                <a href="#menu" class="hover:text-sawah-500 transition-colors">Daftar Menu</a>
+                <a href="#tentang" class="hover:text-sawah-500 transition-colors">Suasana & Galeri</a>
+                <a href="#lokasi" class="hover:text-sawah-500 transition-colors">Lokasi Akurat</a>
+                <a href="#ulasan" class="hover:text-sawah-500 transition-colors">Ulasan Pemirsa</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Cart Trigger Button -->
+                <button id="cartBtn" onclick="toggleCartModal(true)" class="relative p-2.5 bg-sawah-50 text-sawah-700 hover:bg-sawah-100 rounded-xl transition-all border border-sawah-500/20">
+                    <i class="fa-solid fa-basket-shopping text-xl"></i>
+                    <span id="cartBadge" class="hidden absolute -top-1.5 -right-1.5 bg-amber-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow">0</span>
+                </button>
+
+                <!-- Admin Login/Panel Trigger -->
+                <button onclick="openAdminModal()" class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-sawah-800 bg-bambu-200 hover:bg-sawah-600 hover:text-white rounded-xl transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span class="hidden sm:inline">Dashboard Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative bg-sawah-800 text-white overflow-hidden py-16 sm:py-24">
+        <div id="heroBg" class="absolute inset-0 z-0 opacity-25 bg-cover bg-center transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-sawah-800 via-sawah-800/85 to-transparent z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
+            <!-- Tulisan Berjalan (Marquee) Warung Sawah Bu Ning -->
+            <div class="w-full bg-sawah-900/80 border border-amber-400/30 rounded-xl py-2 overflow-hidden shadow-md backdrop-blur">
+                <marquee behavior="scroll" direction="left" scrollamount="5" class="text-amber-300 font-extrabold text-sm sm:text-base tracking-widest uppercase">
+                    🌾 SELAMAT DATANG DI WARUNG SAWAH BU NING TURI KEPUHARJO — NIKMATI KULINER TRADISIONAL KHAS PEDESAAN DENGAN PEMANDANGAN ALAM ASRI 🌾
+                </marquee>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-sawah-600/80 backdrop-blur border border-amber-400/30 text-amber-200 text-xs px-3.5 py-1.5 rounded-full font-medium">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="displayBadgeDesa">Desa Wisata Kampung Turi, Kepuharjo, Karangploso</span>
+                    </div>
+                    <h2 id="heroTitle" class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-amber-50">
+                        Sajian Masakan Desa Tradisional Khas Pedesaan
+                    </h2>
+                    <p id="heroSubtitle" class="text-base sm:text-lg text-sawah-100 font-light leading-relaxed">
+                        Nikmati kelezatan Nasi Jagung, Nasi Empok, dan aneka Lauk Pauk Tradisional dengan pemandangan hijau sawah nan asri dan sejuk khas lereng gunung.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#menu" class="px-6 py-3.5 bg-amber-500 hover:bg-amber-600 text-sawah-800 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Pesan Menu Sekarang</span>
+                        </a>
+                        <a href="#lokasi" class="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 backdrop-blur transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Petunjuk Lokasi Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Operational Info Box -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-2xl shadow-2xl text-white space-y-4">
+                    <h3 class="text-xl font-bold border-b border-white/20 pb-3 flex items-center gap-2">
+                        <i class="fa-regular fa-clock text-amber-400"></i> Informasi Warung Sawah Bu Ning
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sawah-100">Jam Operasional:</span>
+                            <span id="displayJamBuka" class="font-semibold text-amber-200">07:00 - 14:00 WIB</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sawah-100">Hari Operasional:</span>
+                            <span id="displayHariBuka" class="font-semibold text-white">Buka Setiap Hari (Senin - Minggu)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sawah-100">Pemesanan WhatsApp:</span>
+                            <span id="displayWA" class="font-semibold text-emerald-300">085156575526</span>
+                        </div>
+                        <div class="pt-2">
+                            <span class="text-sawah-100 block mb-1">Alamat Presisi:</span>
+                            <p id="displayAlamat" class="text-xs text-sawah-100 leading-relaxed bg-black/20 p-2.5 rounded-lg border border-white/10">
+                                Jl. Tenaga, Dusun Turi, Kepuharjo, Kec. Karang Ploso, Kabupaten Malang, Jawa Timur 65152
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAFTAR MENU & KATALOG -->
+    <section id="menu" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-sawah-500 font-bold uppercase tracking-widest text-xs">Pilihan Kuliner Desa</span>
+            <h2 class="text-3xl font-extrabold text-sawah-800 mt-1">Menu Istimewa Warung Sawah Bu Ning</h2>
+            <p class="text-gray-600 mt-2 text-sm">Pilih menu favorit Anda, sesuaikan porsi, lalu langsung kirimkan pesanan secara cepat melalui WhatsApp.</p>
+        </div>
+
+        <!-- Filter Kategori Menu -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10" id="categoryFilters"></div>
+
+        <!-- Grid Cards Menu -->
+        <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- GALERI SUASANA & DESA WISATA -->
+    <section id="tentang" class="bg-bambu-100/60 py-16 border-y border-bambu-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-bambu-700 font-bold uppercase tracking-widest text-xs">Pesona Alam Desa Wisata Turi Kepuharjo</span>
+                <h2 class="text-3xl font-extrabold text-sawah-800 mt-1">Suasana Makan Di Tepi Sawah</h2>
+                <p class="text-gray-600 mt-2 text-sm">Nikmati keindahan pemandangan hijau pedesaan dan segarnya udara segar khas Kampung Turi Karangploso Malang.</p>
+            </div>
+
+            <!-- Dynamic Gallery Cards Container -->
+            <div id="galleryContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- PETUNJUK LOKASI & GOOGLE MAPS -->
+    <section id="lokasi" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-8 items-start">
+            <div class="space-y-6">
+                <div>
+                    <span class="text-sawah-500 font-bold uppercase tracking-widest text-xs">Kunjungi Kami</span>
+                    <h2 class="text-3xl font-extrabold text-sawah-800 mt-1">Lokasi Akurat</h2>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">Lokasi berada di kawasan desa wisata Kampung Turi Kepuharjo Karangploso, bernuansa sawah pedesaan yang sejuk.</p>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start space-x-3.5 p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <i class="fa-solid fa-map-pin text-sawah-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Alamat Lengkap</h4>
+                            <p id="infoAlamatFull" class="text-gray-600 text-xs mt-0.5">Jl. Tenaga, Dusun Turi, Kepuharjo, Kec. Karang Ploso, Kabupaten Malang, Jawa Timur 65152</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3.5 p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <i class="fa-solid fa-square-phone text-sawah-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Reservasi & WA</h4>
+                            <p id="infoWAFull" class="text-gray-600 text-xs mt-0.5">WhatsApp: 081357579995</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a id="btnGmapsExternal" href="https://maps.google.com/?cid=13179411378954860802" target="_blank" class="w-full py-3.5 bg-sawah-600 hover:bg-sawah-700 text-white font-semibold rounded-xl text-center shadow-md transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-diamond-turn-right"></i>
+                    <span>Buka Rute Petunjuk Google Maps</span>
+                </a>
+            </div>
+
+            <!-- Maps Iframe Container -->
+            <div class="lg:col-span-2 h-96 lg:h-full min-h-[380px] bg-gray-200 rounded-2xl overflow-hidden shadow-inner border border-gray-300">
+                <iframe id="mapIframe" class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.123!2d112.630000!3d-7.890000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78822555555555%3A0x13179411378954860802!2sWarung%20sawah%20Bu%20Ning%20Turi!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ULASAN PEMIRSA & PENGUNJUNG WEB -->
+    <section id="ulasan" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-sawah-500 font-bold uppercase tracking-widest text-xs">Testimoni & Pengalaman</span>
+            <h2 class="text-3xl font-extrabold text-sawah-800 mt-1">Ulasan Pemirsa & Pengunjung</h2>
+            <p class="text-gray-600 mt-2 text-sm">Bagikan kesan, ulasan kata-kata, serta foto atau video kunjungan Anda langsung di sini!</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Form Kirim Ulasan -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 h-fit">
+                <h3 class="font-bold text-gray-800 text-base border-b pb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-nib text-sawah-600"></i> Tulis Ulasan Anda
+                </h3>
+                <form id="reviewForm" onsubmit="handleSendReview(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Nama Anda:</label>
+                        <input type="text" id="reviewName" placeholder="Contoh: Budi Santoso" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Rating Bintang:</label>
+                        <select id="reviewRating" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            <option value="5">⭐⭐⭐⭐⭐ (5/5 - Sangat Memuaskan)</option>
+                            <option value="4">⭐⭐⭐⭐ (4/5 - Puas & Enak)</option>
+                            <option value="3">⭐⭐⭐ (3/5 - Cukup)</option>
+                            <option value="2">⭐⭐ (2/5 - Kurang)</option>
+                            <option value="1">⭐ (1/5 - Buruk)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Komentar / Kata-kata Ulasan:</label>
+                        <textarea id="reviewComment" rows="3" placeholder="Ceritakan pengalaman kuliner & suasana di sini..." class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required></textarea>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="block text-xs font-bold text-gray-700">Lampirkan Foto / Video:</label>
+                        <input type="file" id="reviewMediaFile" accept="image/*,video/*" onchange="handleReviewFileSelect(event)" class="block w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-sawah-50 file:text-sawah-700 hover:file:bg-sawah-100">
+                        <span class="text-[10px] text-gray-400 block">- ATAU Masukkan Link URL / Google Drive -</span>
+                        <input type="url" id="reviewMediaUrl" placeholder="https://..." class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none">
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-sawah-600 hover:bg-sawah-700 text-white font-bold text-xs rounded-xl shadow transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Kirim Ulasan</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- List Tampilan Ulasan Pengunjung -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+                    <h3 class="font-bold text-gray-800 text-sm">Daftar Ulasan Masuk</h3>
+                    <span id="totalReviewsCount" class="text-xs font-semibold px-3 py-1 bg-sawah-50 text-sawah-700 rounded-full">0 Ulasan</span>
+                </div>
+
+                <div id="reviewsContainer" class="space-y-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-sawah-800 text-sawah-100 border-t border-sawah-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <p>© <span id="year"></span> Warung Sawah Bu Ning Kepuharjo. All rights reserved.</p>
+            <div class="flex items-center space-x-4">
+                <span>CMS Admin Panel Dashboard</span>
+                <button onclick="openAdminModal()" class="underline hover:text-amber-300">Akses Admin</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CART & CHECKOUT WHATSAPP -->
+    <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end transition-opacity">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between transform transition-transform duration-300">
+            <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-sawah-800 text-white">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-amber-400"></i>
+                    <h3 class="font-bold text-lg">Keranjang Pesanan</h3>
+                </div>
+                <button onclick="toggleCartModal(false)" class="text-sawah-100 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="p-5 overflow-y-auto flex-grow space-y-4 divide-y divide-gray-100"></div>
+
+            <div class="p-5 border-t border-gray-200 bg-gray-50 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-700 block">Detail Pemesan:</label>
+                    <input type="text" id="custName" placeholder="Nama Anda" class="w-full text-xs p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none">
+                    <textarea id="custNotes" rows="2" placeholder="Catatan Tambahan (Misal: Pedas / Tanpa Bawang)" class="w-full text-xs p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-between items-center pt-2 text-base font-extrabold text-sawah-800">
+                    <span>Total Pembayaran:</span>
+                    <span id="cartTotalPrice" class="text-amber-600">Rp 0</span>
+                </div>
+
+                <button onclick="sendWhatsAppOrder()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Kirim Pesanan ke WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-sawah-100 text-sawah-700 rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-sawah-800">Login Admin CMS</h3>
+                <p class="text-xs text-gray-500 mt-1">Masukkan kata sandi untuk mengelola warung</p>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Kata Sandi Admin</label>
+                <div class="relative">
+                    <input type="password" id="adminPassInput" placeholder="Masukkan password..." class="w-full p-3 pr-10 border border-gray-300 rounded-xl text-lg font-bold tracking-widest focus:ring-2 focus:ring-sawah-500 outline-none">
+                    <button type="button" onclick="togglePasswordVisibility('adminPassInput', 'eyeLoginIcon')" class="absolute inset-y-0 right-0 px-3.5 flex items-center text-gray-500 hover:text-gray-700">
+                        <i id="eyeLoginIcon" class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="loginError" class="text-red-500 text-xs font-semibold text-center hidden">Password salah! Silakan coba lagi.</div>
+            <div class="flex gap-2">
+                <button onclick="closeAdminLoginModal()" class="w-1/2 py-2.5 border border-gray-300 rounded-xl text-xs font-bold text-gray-600">Batal</button>
+                <button onclick="verifyAdminLogin()" class="w-1/2 py-2.5 bg-sawah-600 text-white rounded-xl text-xs font-bold hover:bg-sawah-700">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL ADMIN CMS FULL MODAL -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md z-50 hidden overflow-y-auto">
+        <div class="min-h-screen max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col min-h-[85vh]">
+                
+                <!-- CMS Header -->
+                <div class="bg-sawah-800 text-white p-5 flex items-center justify-between border-b border-sawah-700">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-sliders text-amber-400 text-xl"></i>
+                        <div>
+                            <h2 class="font-bold text-lg leading-tight">Panel Kelola CMS Admin</h2>
+                            <p class="text-xs text-sawah-100">Warung Sawah Bu Ning Kepuharjo</p>
+                        </div>
+                    </div>
+                    <button onclick="closeAdminPanel()" class="px-4 py-2 bg-red-600/80 hover:bg-red-600 text-white rounded-xl text-xs font-bold transition-all">
+                        <i class="fa-solid fa-power-off mr-1"></i> Keluar Admin
+                    </button>
+                </div>
+
+                <!-- CMS Tabs -->
+                <div class="bg-sawah-50 border-b border-gray-200 px-6 flex space-x-4 overflow-x-auto">
+                    <button id="tabBtnDashboard" onclick="switchAdminTab('dashboard')" class="py-3 px-4 font-bold text-sm border-b-2 border-sawah-600 text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard & QR
+                    </button>
+                    <button id="tabBtnBeranda" onclick="switchAdminTab('beranda')" class="py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-house mr-1.5"></i> Edit Beranda
+                    </button>
+                    <button id="tabBtnMenu" onclick="switchAdminTab('menu')" class="py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-utensils mr-1.5"></i> Kelola Menu
+                    </button>
+                    <button id="tabBtnLokasi" onclick="switchAdminTab('lokasi')" class="py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-map-location-dot mr-1.5"></i> Edit Maps
+                    </button>
+                    <button id="tabBtnGallery" onclick="switchAdminTab('gallery')" class="py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-images mr-1.5"></i> Kelola Galeri
+                    </button>
+                    <button id="tabBtnReviews" onclick="switchAdminTab('reviews')" class="py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap">
+                        <i class="fa-solid fa-comments mr-1.5"></i> Kelola Ulasan Pemirsa
+                    </button>
+                </div>
+
+                <!-- CMS Content Container -->
+                <div class="p-6 flex-grow bg-earth">
+                    
+                    <!-- TAB 1: DASHBOARD & QR CODE -->
+                    <div id="tabContentDashboard" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-sawah-100 text-sawah-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-solid fa-utensils"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-semibold">Total Item Menu</p>
+                                    <h4 id="dashTotalMenu" class="text-2xl font-extrabold text-gray-800">0</h4>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-solid fa-images"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-semibold">Foto Galeri Suasana</p>
+                                    <h4 id="dashTotalGaleri" class="text-2xl font-extrabold text-gray-800">0</h4>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-semibold">Ulasan Pemirsa</p>
+                                    <h4 id="dashTotalReviews" class="text-2xl font-extrabold text-gray-800">0</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bagian QR Code & Tautan Publik -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm grid md:grid-cols-2 gap-6 items-center">
+                            <div class="space-y-3">
+                                <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-qrcode text-sawah-600"></i> Kode QR & Tautan Publik Web
+                                </h3>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Bagikan tautan web ini atau cetak QR Code di bawah agar pengunjung dapat dengan mudah memindai dan mengakses menu warung langsung dari HP mereka.
+                                </p>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Tautan Web Publik:</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="publicWebUrl" readonly class="w-full p-2.5 text-xs bg-gray-50 border border-gray-300 rounded-lg text-gray-600 outline-none">
+                                        <button onclick="copyPublicUrl()" class="px-4 py-2 bg-sawah-600 hover:bg-sawah-700 text-white font-bold text-xs rounded-lg shadow whitespace-nowrap">
+                                            Salin Link
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-xl border border-gray-200">
+                                <div id="qrcode" class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-2"></div>
+                                <span class="text-[11px] font-semibold text-gray-500">Scan untuk Buka Web</span>
+                            </div>
+                        </div>
+
+                        <!-- Form Ubah Password Admin -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 max-w-xl">
+                            <h3 class="font-bold text-gray-800 text-base border-b pb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-key text-sawah-600"></i> Ubah Password Admin
+                            </h3>
+                            <form onsubmit="saveNewPassword(event)" class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Password Baru:</label>
+                                    <div class="relative">
+                                        <input type="password" id="newAdminPassword" placeholder="Masukkan password baru..." class="w-full p-2.5 pr-10 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                                        <button type="button" onclick="togglePasswordVisibility('newAdminPassword', 'eyeNewPassIcon')" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700">
+                                            <i id="eyeNewPassIcon" class="fa-solid fa-eye text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="px-5 py-2.5 bg-sawah-600 hover:bg-sawah-700 text-white font-bold text-xs rounded-xl shadow transition-all">
+                                    Perbarui Password
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: EDIT BERANDA & HERO -->
+                    <div id="tabContentBeranda" class="space-y-6 hidden">
+                        <form id="berandaForm" onsubmit="saveBerandaSettings(event)" class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4 max-w-3xl">
+                            <h3 class="font-bold text-gray-800 text-base border-b pb-2">Edit Tampilan Beranda Utama</h3>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Badge Keterangan Lokasi Singkat:</label>
+                                <input type="text" id="settingBadgeDesa" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Judul Utama Banner (Hero Title):</label>
+                                <input type="text" id="settingHeroTitle" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Subdeskripsi Teks Beranda:</label>
+                                <textarea id="settingHeroSub" rows="3" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required></textarea>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-gray-700">Foto Gambar Background Beranda (Bisa URL Google Drive atau Web):</label>
+                                <input type="url" id="settingHeroBgUrl" placeholder="Masukkan URL Gambar atau Link Google Drive..." class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Jam Buka Operasional:</label>
+                                    <input type="text" id="settingJamBuka" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Hari Operasional:</label>
+                                    <input type="text" id="settingHariBuka" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Nomor WhatsApp Pemesanan:</label>
+                                <input type="text" id="settingWA" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            </div>
+
+                            <button type="submit" class="px-6 py-2.5 bg-sawah-600 text-white font-bold text-xs rounded-xl shadow hover:bg-sawah-700 transition-all">
+                                Simpan Perubahan Beranda
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- TAB 3: KELOLA MENU -->
+                    <div id="tabContentMenu" class="space-y-6 hidden">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-800">Daftar Menu Aktif</h3>
+                                <p class="text-xs text-gray-500">Tambah, ubah, atau hapus item kuliner dari katalog warung</p>
+                            </div>
+                            <button onclick="openMenuFormModal()" class="px-4 py-2.5 bg-sawah-600 hover:bg-sawah-700 text-white text-xs font-bold rounded-xl shadow transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Tambah Menu Baru</span>
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto bg-white rounded-xl border border-gray-200 shadow-sm">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700 font-bold border-b border-gray-200">
+                                        <th class="p-3">Foto</th>
+                                        <th class="p-3">Nama Menu</th>
+                                        <th class="p-3">Kategori</th>
+                                        <th class="p-3">Harga</th>
+                                        <th class="p-3 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminMenuTableBody" class="divide-y divide-gray-100"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: EDIT GOOGLE MAPS & LOKASI -->
+                    <div id="tabContentLokasi" class="space-y-6 hidden">
+                        <form id="lokasiForm" onsubmit="saveLokasiSettings(event)" class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4 max-w-3xl">
+                            <h3 class="font-bold text-gray-800 text-base border-b pb-2">Edit Lokasi Akurat & Google Maps</h3>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Alamat Lengkap Presisi:</label>
+                                <textarea id="settingAlamat" rows="3" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Link URL Embed Google Maps (iFrame Src):</label>
+                                <input type="url" id="settingMapEmbed" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                                <span class="text-[10px] text-gray-400 block mt-0.5">Dapatkan dari Google Maps > Bagikan > Sematkan Peta (salin URL di dalam attribute src).</span>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Tautan Eksternal Rute Google Maps (Tombol Buka Rute):</label>
+                                <input type="url" id="settingMapExternal" class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            </div>
+
+                            <button type="submit" class="px-6 py-2.5 bg-sawah-600 text-white font-bold text-xs rounded-xl shadow hover:bg-sawah-700 transition-all">
+                                Simpan Perubahan Lokasi
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- TAB 5: KELOLA GALERI SUASANA -->
+                    <div id="tabContentGallery" class="space-y-6 hidden">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-800">Foto Suasana & Galeri Warung</h3>
+                                <p class="text-xs text-gray-500">Atur foto-foto keindahan pemandangan sawah dan tempat lesehan</p>
+                            </div>
+                            <button onclick="openGalleryFormModal()" class="px-4 py-2.5 bg-bambu-700 hover:bg-bambu-800 text-white text-xs font-bold rounded-xl shadow transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Tambah Foto Galeri Baru</span>
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto bg-white rounded-xl border border-gray-200 shadow-sm">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700 font-bold border-b border-gray-200">
+                                        <th class="p-3">Foto</th>
+                                        <th class="p-3">Judul Suasana</th>
+                                        <th class="p-3">Keterangan Singkat</th>
+                                        <th class="p-3 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminGalleryTableBody" class="divide-y divide-gray-100"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: KELOLA ULASAN PEMIRSA -->
+                    <div id="tabContentReviews" class="space-y-6 hidden">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div>
+                                <h3 class="font-bold text-gray-800">Daftar Tabel Ulasan Pemirsa</h3>
+                                <p class="text-xs text-gray-500">Kelola dan moderasi ulasan atau testimoni yang dikirimkan pengunjung</p>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto bg-white rounded-xl border border-gray-200 shadow-sm">
+                            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-700 font-bold border-b border-gray-200">
+                                        <th class="p-3">Pengirim</th>
+                                        <th class="p-3">Rating</th>
+                                        <th class="p-3">Komentar</th>
+                                        <th class="p-3">Media (Foto/Video)</th>
+                                        <th class="p-3 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminReviewsTableBody" class="divide-y divide-gray-100"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM MODAL TAMBAH / EDIT MENU -->
+    <div id="menuFormModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 id="menuFormTitle" class="font-bold text-lg text-sawah-800">Tambah Menu Baru</h3>
+                <button onclick="closeMenuFormModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <form id="menuCrudForm" onsubmit="handleSaveMenu(event)" class="space-y-4">
+                <input type="hidden" id="menuId">
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Nama Menu Makanan / Minuman</label>
+                    <input type="text" id="menuName" placeholder="Contoh: Nasi Jagung Komplit" class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Kategori Menu</label>
+                        <select id="menuCategory" class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                            <option value="Nasi & Makanan Utama">Nasi & Makanan Utama</option>
+                            <option value="Lauk Pauk">Lauk Pauk</option>
+                            <option value="Sayur & Pelengkap">Sayur & Pelengkap</option>
+                            <option value="Minuman">Minuman</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Harga (Rp)</label>
+                        <input type="number" id="menuPrice" placeholder="15000" class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">URL Foto (Mendukung Tautan Google Drive atau Web)</label>
+                    <input type="url" id="menuImageUrl" placeholder="https://drive.google.com/file/d/... atau link web..." class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi Singkat Menu</label>
+                    <textarea id="menuDesc" rows="2" placeholder="Jelaskan porsi menu..." class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeMenuFormModal()" class="px-4 py-2 border border-gray-300 text-gray-600 rounded-xl text-xs font-bold">Batal</button>
+                    <button type="submit" class="px-5 py-2 bg-sawah-600 hover:bg-sawah-700 text-white rounded-xl text-xs font-bold shadow">Simpan Menu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORM MODAL TAMBAH / EDIT GALERI -->
+    <div id="galleryFormModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 id="galleryFormTitle" class="font-bold text-lg text-sawah-800">Tambah Foto Galeri Baru</h3>
+                <button onclick="closeGalleryFormModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <form id="galleryCrudForm" onsubmit="handleSaveGallery(event)" class="space-y-4">
+                <input type="hidden" id="galleryId">
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Judul Suasana / Foto</label>
+                    <input type="text" id="galleryTitle" placeholder="Contoh: Gubuk Lesehan Tepi Sawah" class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">URL Foto Suasana (Google Drive / Web)</label>
+                    <input type="url" id="galleryImageUrl" placeholder="https://drive.google.com/file/d/... atau link web..." class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Keterangan Singkat Suasana</label>
+                    <textarea id="galleryDesc" rows="2" placeholder="Sebutkan keunikan foto ini..." class="w-full p-2.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-sawah-500 outline-none" required></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeGalleryFormModal()" class="px-4 py-2 border border-gray-300 text-gray-600 rounded-xl text-xs font-bold">Batal</button>
+                    <button type="submit" class="px-5 py-2 bg-bambu-700 hover:bg-bambu-800 text-white rounded-xl text-xs font-bold shadow">Simpan Foto Galeri</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-sawah-800 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-amber-400/30">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
+        <span id="toastMsg" class="text-xs font-medium">Pesan Notifikasi</span>
+    </div>
+
+    <!-- Cloud storage: Supabase. Isi URL dan anon key pada CLOUD_CONFIG di bawah. -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const CLOUD_CONFIG = {
+            url: 'https://PROJECT_ID.supabase.co',
+            anonKey: 'ISI_SUPABASE_ANON_KEY_DI_SINI'
+        };
+        const CLOUD_ENABLED = !CLOUD_CONFIG.url.includes('PROJECT_ID') &&
+                              !CLOUD_CONFIG.anonKey.includes('ISI_SUPABASE');
+        let cloudClient = null;
+        if (CLOUD_ENABLED && window.supabase) {
+            cloudClient = window.supabase.createClient(CLOUD_CONFIG.url, CLOUD_CONFIG.anonKey);
+        }
+
+        async function cloudLoad(key, fallback) {
+            if (!cloudClient) return fallback;
+            try {
+                const { data, error } = await cloudClient.from('warung_data')
+                    .select('value').eq('key', key).maybeSingle();
+                if (error) throw error;
+                return data ? data.value : fallback;
+            } catch (err) {
+                console.error('Gagal membaca data cloud:', key, err);
+                return fallback;
+            }
+        }
+
+        async function cloudSave(key, value) {
+            // Cache lokal untuk cadangan; data utama disimpan di database online.
+            try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+            if (!cloudClient) {
+                console.warn('Cloud belum dikonfigurasi. Perubahan hanya tersimpan di perangkat ini.');
+                return false;
+            }
+            try {
+                const { error } = await cloudClient.from('warung_data')
+                    .upsert({ key, value, updated_at: new Date().toISOString() }, { onConflict: 'key' });
+                if (error) throw error;
+                return true;
+            } catch (err) {
+                console.error('Gagal menyimpan ke cloud:', key, err);
+                showToast('Gagal menyimpan online. Periksa koneksi/config cloud.', true);
+                return false;
+            }
+        }
+
+        async function loadCloudState() {
+            if (!cloudClient) return;
+            try {
+                const keys = ['buning_settings', 'buning_menus', 'buning_gallery', 'buning_reviews'];
+                const values = await Promise.all(keys.map(k => cloudLoad(k, null)));
+                if (values[0]) appSettings = values[0];
+                if (values[1]) menuList = values[1];
+                if (values[2]) galleryList = values[2];
+                if (values[3]) reviewsList = values[3];
+                if (!appSettings.adminPass) appSettings.adminPass = '1234';
+            } catch (err) {
+                console.error('Gagal memuat data online:', err);
+            }
+        }
+    </script>
+    <script>
+        function formatImageUrl(url) {
+            if (!url) return '';
+            if (url.includes('drive.google.com')) {
+                let fileId = '';
+                if (url.includes('/file/d/')) {
+                    const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                    if (match && match[1]) fileId = match[1];
+                } else if (url.includes('id=')) {
+                    const urlParams = new URLSearchParams(url.split('?')[1]);
+                    fileId = urlParams.get('id');
+                }
+                if (fileId) {
+                    return `https://lh3.googleusercontent.com/d/${fileId}=w1000`;
+                }
+            }
+            return url;
+        }
+
+        // Fungsi Toggle Lihat / Sembunyikan Password dengan Ikon Mata
+        function togglePasswordVisibility(inputId, iconId) {
+            const inputField = document.getElementById(inputId);
+            const iconField = document.getElementById(iconId);
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                iconField.classList.remove('fa-eye');
+                iconField.classList.add('fa-eye-slash');
+            } else {
+                inputField.type = 'password';
+                iconField.classList.remove('fa-eye-slash');
+                iconField.classList.add('fa-eye');
+            }
+        }
+
+        // MASTER DATA ACCURATE DEFAULT CONFIGURATION
+        const DEFAULT_SETTINGS = {
+            wa: '081357579995',
+            jamBuka: '07:00 - 14:00 WIB',
+            hariBuka: 'Buka Setiap Hari (Senin - Minggu)',
+            alamat: 'Jl. Tenaga, Dusun Turi, Kepuharjo, Kec. Karang Ploso, Kabupaten Malang, Jawa Timur 65152',
+            badgeDesa: 'Desa Wisata Kampung Turi, Kepuharjo, Karangploso',
+            heroTitle: 'Sajian Masakan Desa Tradisional Khas Pedesaan',
+            heroSub: 'Nikmati kelezatan Nasi Jagung, Nasi Empok, dan aneka Lauk Pauk Tradisional dengan pemandangan hijau sawah nan asri dan sejuk khas lereng gunung.',
+            heroBg: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop',
+            mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.123!2d112.630000!3d-7.890000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78822555555555%3A0x13179411378954860802!2sWarung%20sawah%20Bu%20Ning%20Turi!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid',
+            mapExternal: 'https://maps.google.com/?cid=13179411378954860802',
+            adminPass: '1234'
+        };
+
+        const DEFAULT_MENUS = [
+            {
+                id: 'm1',
+                name: 'Nasi Jagung Komplit',
+                category: 'Nasi & Makanan Utama',
+                price: 12000,
+                image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=600&auto=format&fit=crop',
+                desc: 'Nasi jagung hangat dilengkapi urap-urap segar, mendol tempe, rempeyek, dan sambal terasi pedas.'
+            },
+            {
+                id: 'm2',
+                name: 'Nasi Empok Campur',
+                category: 'Nasi & Makanan Utama',
+                price: 12000,
+                image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=600&auto=format&fit=crop',
+                desc: 'Sajian nasi empok jagung tradisional gurih disajikan dengan tumis lumbu dan ikan asin crisp.'
+            },
+            {
+                id: 'm3',
+                name: 'Perkedel/Mendol Kentang',
+                category: 'Lauk Pauk',
+                price: 2000,
+                image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=600&auto=format&fit=crop',
+                desc: 'makanan berbahan dasar kentang dimasak seperti mendol dibalut telor digoreng.'
+            },
+            {
+                id: 'm4',
+                name: 'Bakwan Jagung Manis (3 Pcs)',
+                category: 'Lauk Pauk',
+                price: 5000,
+                image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop',
+                desc: 'Gorengan jagung manis krispi renyah favorit untuk lauk pendamping.'
+            },
+            {
+                id: 'm5',
+                name: 'Sayur Lodeh Tahu Tempe',
+                category: 'Sayur & Pelengkap',
+                price: 5000,
+                image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop',
+                desc: 'Kuah santan gurih melimpah berisi irisan tahu, tempe, dan terong segar khas masakan ibu.'
+            },
+            {
+                id: 'm6',
+                name: 'Mendol Goreng',
+                category: 'Lauk Pauk',
+                price: 2000,
+                image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600&auto=format&fit=crop',
+                desc: 'Olahan masakan bahan dasar tempe dibumbu rempah2 dan dibentuk lonjong digoreng aring.'
+            }
+        ];
+
+        const DEFAULT_GALLERY = [
+            {
+                id: 'g1',
+                title: 'Hamparan Sawah Hijau Kampung Turi',
+                desc: 'Pemandangan alami langsung saat menyantap hidangan khas pedesaan',
+                image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop'
+            },
+            {
+                id: 'g2',
+                title: 'Sajian Bumbu Desa Bu Ning',
+                desc: 'Resep tradisional warisan nenek moyang olahan Bu Ning',
+                image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop'
+            },
+            {
+                id: 'g3',
+                title: 'teras kuliner',
+                desc: 'Suasana santai dan nyaman bersama keluarga di tempat asri',
+                image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=800&auto=format&fit=crop'
+            }
+        ];
+
+        const DEFAULT_REVIEWS = [
+            {
+                id: 'r1',
+                name: 'Siti Aminah',
+                rating: '5',
+                comment: 'Nasi jagung dan mendolnya benar-benar juara! Suasana sawahnya asri banget buat makan bareng keluarga.',
+                media: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop',
+                mediaType: 'image',
+                date: '12 Oktober 2026'
+            }
+        ];
+
+        // LOCAL STORAGE STATE
+        let appSettings = JSON.parse(localStorage.getItem('buning_settings')) || DEFAULT_SETTINGS;
+        if(!appSettings.adminPass) appSettings.adminPass = '1234';
+
+        let menuList = JSON.parse(localStorage.getItem('buning_menus')) || DEFAULT_MENUS;
+        let galleryList = JSON.parse(localStorage.getItem('buning_gallery')) || DEFAULT_GALLERY;
+        let reviewsList = JSON.parse(localStorage.getItem('buning_reviews')) || DEFAULT_REVIEWS;
+        let activeCategory = 'Semua';
+        let cart = [];
+        let currentUploadedReviewMedia = '';
+
+        window.onload = async function () {
+            document.getElementById('year').innerText = new Date().getFullYear();
+            await loadCloudState();
+            if (!cloudClient) {
+                showToast('Mode lokal: hubungkan Supabase agar semua perangkat sinkron.', true);
+            }
+            renderSettings();
+            renderCategoryFilters();
+            renderMenuItems();
+            renderGalleryItems();
+            renderReviewsList();
+            updateCartUI();
+            updateDashboardStats();
+            
+            document.getElementById('publicWebUrl').value = window.location.href.split('#')[0];
+        };
+
+        function renderSettings() {
+            document.getElementById('displayWA').innerText = appSettings.wa;
+            document.getElementById('displayJamBuka').innerText = appSettings.jamBuka;
+            document.getElementById('displayHariBuka').innerText = appSettings.hariBuka || 'Buka Setiap Hari';
+            document.getElementById('displayAlamat').innerText = appSettings.alamat;
+            document.getElementById('displayBadgeDesa').innerText = appSettings.badgeDesa || 'Desa Wisata Kampung Turi, Kepuharjo, Karangploso';
+            document.getElementById('heroTitle').innerText = appSettings.heroTitle;
+            document.getElementById('heroSubtitle').innerText = appSettings.heroSub;
+            document.getElementById('infoAlamatFull').innerText = appSettings.alamat;
+            document.getElementById('infoWAFull').innerText = `WhatsApp: ${appSettings.wa}`;
+
+            if(appSettings.heroBg) {
+                document.getElementById('heroBg').style.backgroundImage = `url('${formatImageUrl(appSettings.heroBg)}')`;
+            }
+
+            if(appSettings.mapEmbed) {
+                document.getElementById('mapIframe').src = appSettings.mapEmbed;
+            }
+
+            if(appSettings.mapExternal) {
+                document.getElementById('btnGmapsExternal').href = appSettings.mapExternal;
+            }
+
+            document.getElementById('settingWA').value = appSettings.wa;
+            document.getElementById('settingJamBuka').value = appSettings.jamBuka;
+            document.getElementById('settingHariBuka').value = appSettings.hariBuka || 'Buka Setiap Hari';
+            document.getElementById('settingAlamat').value = appSettings.alamat;
+            document.getElementById('settingBadgeDesa').value = appSettings.badgeDesa || '';
+            document.getElementById('settingHeroTitle').value = appSettings.heroTitle;
+            document.getElementById('settingHeroSub').value = appSettings.heroSub;
+            document.getElementById('settingHeroBgUrl').value = appSettings.heroBg || '';
+            document.getElementById('settingMapEmbed').value = appSettings.mapEmbed || '';
+            document.getElementById('settingMapExternal').value = appSettings.mapExternal || '';
+        }
+
+        const categories = ['Semua', 'Nasi & Makanan Utama', 'Lauk Pauk', 'Sayur & Pelengkap', 'Minuman'];
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('categoryFilters');
+            container.innerHTML = categories.map(cat => {
+                const isActive = activeCategory === cat;
+                return `
+                    <button onclick="setCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${isActive ? 'bg-sawah-600 text-white shadow-sawah-500/20' : 'bg-white text-gray-700 hover:bg-sawah-50 border border-gray-200'}">
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategoryFilters();
+            renderMenuItems();
+        }
+
+        function renderMenuItems() {
+            const container = document.getElementById('menuContainer');
+            const filtered = activeCategory === 'Semua' 
+                ? menuList 
+                : menuList.filter(item => item.category === activeCategory);
+
+            if(filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-dashed border-gray-300">
+                        <i class="fa-solid fa-utensils text-4xl text-gray-300 mb-2"></i>
+                        <p class="text-sm font-semibold text-gray-500">Belum ada menu dalam kategori ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => {
+                const imgSrc = formatImageUrl(item.image);
+                return `
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-48 overflow-hidden bg-gray-100">
+                                <img src="${imgSrc}" alt="${item.name}" onerror="this.src='https://placehold.co/600x400/e3eae3/2d502b?text=Foto+Menu'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 bg-sawah-800/90 backdrop-blur text-amber-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    ${item.category}
+                                </span>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <h3 class="font-bold text-gray-800 text-base group-hover:text-sawah-600 transition-colors">${item.name}</h3>
+                                <p class="text-xs text-gray-500 leading-relaxed line-clamp-2">${item.desc}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between mt-2">
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-400 block">Harga Porsi</span>
+                                <span class="text-base font-extrabold text-sawah-700">Rp ${Number(item.price).toLocaleString('id-ID')}</span>
+                            </div>
+                            <button onclick="addToCart('${item.id}')" class="px-4 py-2.5 bg-sawah-50 text-sawah-700 hover:bg-sawah-600 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border border-sawah-500/20">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Tambah</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderGalleryItems() {
+            const container = document.getElementById('galleryContainer');
+            if(galleryList.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10 text-gray-500">
+                        Belum ada foto suasana galeri.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = galleryList.map(item => {
+                const imgSrc = formatImageUrl(item.image);
+                return `
+                    <div class="group relative rounded-2xl overflow-hidden shadow-md h-64 bg-sawah-800">
+                        <img src="${imgSrc}" alt="${item.title}" onerror="this.src='https://placehold.co/800x600/ece2d0/7c5a2b?text=Galeri+Suasana'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-5">
+                            <div>
+                                <h4 class="text-white font-bold text-lg">${item.title}</h4>
+                                <p class="text-sawah-100 text-xs">${item.desc}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderReviewsList() {
+            const container = document.getElementById('reviewsContainer');
+            document.getElementById('totalReviewsCount').innerText = `${reviewsList.length} Ulasan`;
+
+            if(reviewsList.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 bg-white rounded-2xl border border-dashed border-gray-300">
+                        <i class="fa-solid fa-comments text-3xl text-gray-300 mb-2"></i>
+                        <p class="text-xs font-semibold text-gray-500">Belum ada ulasan pemirsa. Jadilah yang pertama memberikan ulasan!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = reviewsList.map(item => {
+                const stars = '⭐'.repeat(parseInt(item.rating) || 5);
+                let mediaHtml = '';
+                if(item.media) {
+                    const cleanMedia = formatImageUrl(item.media);
+                    if(item.mediaType === 'video' || item.media.includes('mp4') || item.media.includes('webm')) {
+                        mediaHtml = `<video controls class="w-full h-48 object-cover rounded-xl mt-3 border border-gray-200"><source src="${cleanMedia}"></video>`;
+                    } else {
+                        mediaHtml = `<img src="${cleanMedia}" alt="Media Ulasan" onerror="this.style.display='none'" class="w-full h-48 object-cover rounded-xl mt-3 border border-gray-200">`;
+                    }
+                }
+
+                return `
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm space-y-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">${item.name}</h4>
+                                <span class="text-xs text-amber-500 font-semibold">${stars}</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400">${item.date}</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">${item.comment}</p>
+                        ${mediaHtml}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleReviewFileSelect(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    currentUploadedReviewMedia = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleSendReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewName').value.trim();
+            const rating = document.getElementById('reviewRating').value;
+            const comment = document.getElementById('reviewComment').value.trim();
+            const urlMedia = document.getElementById('reviewMediaUrl').value.trim();
+
+            const finalMedia = currentUploadedReviewMedia || urlMedia || '';
+            const mediaType = finalMedia.includes('video') ? 'video' : 'image';
+            const dateStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            const newReview = {
+                id: 'r_' + Date.now(),
+                name,
+                rating,
+                comment,
+                media: finalMedia,
+                mediaType,
+                date: dateStr
+            };
+
+            reviewsList.unshift(newReview);
+            cloudSave('buning_reviews', reviewsList);
+
+            document.getElementById('reviewForm').reset();
+            currentUploadedReviewMedia = '';
+            renderReviewsList();
+            updateDashboardStats();
+            renderAdminReviewsTable();
+            showToast('Ulasan berhasil dikirimkan. Terima kasih!');
+        }
+
+        function addToCart(itemId) {
+            const item = menuList.find(m => m.id === itemId);
+            if(!item) return;
+
+            const existing = cart.find(c => c.id === itemId);
+            if(existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+
+            updateCartUI();
+            showToast(`"${item.name}" berhasil ditambahkan!`);
+        }
+
+        function updateQty(itemId, delta) {
+            const index = cart.findIndex(c => c.id === itemId);
+            if(index > -1) {
+                cart[index].qty += delta;
+                if(cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            
+            if(totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            const itemsContainer = document.getElementById('cartItemsList');
+            if(cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-5xl mb-3"></i>
+                        <p class="text-xs font-semibold">Keranjang pesanan masih kosong</p>
+                    </div>
+                `;
+            } else {
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center justify-between pt-3 first:pt-0">
+                        <div class="space-y-0.5">
+                            <h4 class="font-bold text-xs text-gray-800">${item.name}</h4>
+                            <p class="text-[11px] text-amber-700 font-semibold">Rp ${Number(item.price).toLocaleString('id-ID')}</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-gray-100 p-1 rounded-lg">
+                            <button onclick="updateQty('${item.id}', -1)" class="w-6 h-6 bg-white rounded flex items-center justify-center text-xs font-bold text-gray-600 shadow-sm hover:bg-gray-200">-</button>
+                            <span class="text-xs font-bold px-1.5">${item.qty}</span>
+                            <button onclick="updateQty('${item.id}', 1)" class="w-6 h-6 bg-white rounded flex items-center justify-center text-xs font-bold text-gray-600 shadow-sm hover:bg-gray-200">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cartTotalPrice').innerText = `Rp ${totalAmount.toLocaleString('id-ID')}`;
+        }
+
+        function toggleCartModal(show) {
+            const modal = document.getElementById('cartModal');
+            if(show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function sendWhatsAppOrder() {
+            if(cart.length === 0) {
+                showToast('Keranjang Anda masih kosong!', true);
+                return;
+            }
+
+            const custName = document.getElementById('custName').value.trim();
+            const custNotes = document.getElementById('custNotes').value.trim();
+
+            if(!custName) {
+                showToast('Harap masukkan Nama Pemesan!', true);
+                return;
+            }
+
+            let message = `*HALO WARUNG SAWAH BU NING, SAYA MAU PESAN MENU:*\n\n`;
+            message += `*Nama Pemesan:* ${custName}\n`;
+            message += `*Waktu Pesan:* ${new Date().toLocaleString('id-ID')}\n\n`;
+            message += `*RINCIAN PESANAN:*\n`;
+
+            let total = 0;
+            cart.forEach((item, i) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                message += `${i+1}. ${item.name} (${item.qty}x) - Rp ${subtotal.toLocaleString('id-ID')}\n`;
+            });
+
+            message += `\n*TOTAL PEMBAYARAN:* Rp ${total.toLocaleString('id-ID')}\n`;
+            if(custNotes) {
+                message += `*Catatan Tambahan:* ${custNotes}\n`;
+            }
+            message += `\nMohon konfirmasi ketersediaan pesanan & meja. Terima kasih!`;
+
+            const waNumber = appSettings.wa.replace(/[^0-9]/g, '');
+            const encodedUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(encodedUrl, '_blank');
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+            document.getElementById('adminPassInput').value = '';
+            document.getElementById('loginError').classList.add('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function verifyAdminLogin() {
+            const pass = document.getElementById('adminPassInput').value;
+            if(pass === appSettings.adminPass) {
+                closeAdminLoginModal();
+                openAdminPanel();
+                showToast('Berhasil Login Admin!');
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+            updateDashboardStats();
+            renderAdminMenuTable();
+            renderAdminGalleryTable();
+            renderAdminReviewsTable();
+            generateQRCode();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+        }
+
+        function switchAdminTab(tab) {
+            const tabs = ['Dashboard', 'Beranda', 'Menu', 'Lokasi', 'Gallery', 'Reviews'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tabBtn${t}`);
+                const content = document.getElementById(`tabContent${t}`);
+                if(t.toLowerCase() === tab.toLowerCase()) {
+                    btn.className = 'py-3 px-4 font-bold text-sm border-b-2 border-sawah-600 text-sawah-800 whitespace-nowrap';
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = 'py-3 px-4 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-sawah-800 whitespace-nowrap';
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        function updateDashboardStats() {
+            document.getElementById('dashTotalMenu').innerText = menuList.length;
+            document.getElementById('dashTotalGaleri').innerText = galleryList.length;
+            document.getElementById('dashTotalReviews').innerText = reviewsList.length;
+        }
+
+        function generateQRCode() {
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+            const currentUrl = window.location.href.split('#')[0];
+            new QRCode(qrContainer, {
+                text: currentUrl,
+                width: 140,
+                height: 140,
+                colorDark: '#1a3019',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        function copyPublicUrl() {
+            const urlInput = document.getElementById('publicWebUrl');
+            urlInput.select();
+            urlInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(urlInput.value);
+            showToast('Tautan web berhasil disalin!');
+        }
+
+        function saveNewPassword(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('newAdminPassword').value.trim();
+            if(!newPass) {
+                showToast('Password tidak boleh kosong!', true);
+                return;
+            }
+            appSettings.adminPass = newPass;
+            cloudSave('buning_settings', appSettings);
+            document.getElementById('newAdminPassword').value = '';
+            showToast('Password admin berhasil diperbarui!');
+        }
+
+        function saveBerandaSettings(e) {
+            e.preventDefault();
+            appSettings.badgeDesa = document.getElementById('settingBadgeDesa').value.trim();
+            appSettings.heroTitle = document.getElementById('settingHeroTitle').value.trim();
+            appSettings.heroSub = document.getElementById('settingHeroSub').value.trim();
+            appSettings.jamBuka = document.getElementById('settingJamBuka').value.trim();
+            appSettings.hariBuka = document.getElementById('settingHariBuka').value.trim();
+            appSettings.wa = document.getElementById('settingWA').value.trim();
+            appSettings.heroBg = document.getElementById('settingHeroBgUrl').value.trim();
+
+            cloudSave('buning_settings', appSettings);
+            renderSettings();
+            showToast('Pengaturan beranda berhasil disimpan!');
+        }
+
+        function saveLokasiSettings(e) {
+            e.preventDefault();
+            appSettings.alamat = document.getElementById('settingAlamat').value.trim();
+            appSettings.mapEmbed = document.getElementById('settingMapEmbed').value.trim();
+            appSettings.mapExternal = document.getElementById('settingMapExternal').value.trim();
+
+            cloudSave('buning_settings', appSettings);
+            renderSettings();
+            showToast('Pengaturan lokasi & Google Maps berhasil diperbarui!');
+        }
+
+        function renderAdminMenuTable() {
+            const body = document.getElementById('adminMenuTableBody');
+            body.innerHTML = menuList.map(item => `
+                <tr class="hover:bg-sawah-50/50 transition-colors">
+                    <td class="p-3">
+                        <img src="${formatImageUrl(item.image)}" alt="${item.name}" class="w-12 h-12 object-cover rounded-lg border border-gray-200">
+                    </td>
+                    <td class="p-3 font-bold text-gray-800">${item.name}</td>
+                    <td class="p-3 text-gray-600">${item.category}</td>
+                    <td class="p-3 font-semibold text-sawah-700">Rp ${Number(item.price).toLocaleString('id-ID')}</td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="editMenu('${item.id}')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold text-xs shadow">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                        </button>
+                        <button onclick="deleteMenu('${item.id}')" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs shadow">
+                            <i class="fa-solid fa-trash"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAdminReviewsTable() {
+            const body = document.getElementById('adminReviewsTableBody');
+            if(reviewsList.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">Belum ada ulasan pemirsa.</td></tr>`;
+                return;
+            }
+
+            body.innerHTML = reviewsList.map(item => `
+                <tr class="hover:bg-sawah-50/50 transition-colors">
+                    <td class="p-3 font-bold text-gray-800">${item.name}<br><span class="text-[10px] text-gray-400 font-normal">${item.date}</span></td>
+                    <td class="p-3 text-amber-500">${'⭐'.repeat(parseInt(item.rating))}</td>
+                    <td class="p-3 text-gray-600 text-xs max-w-xs truncate">${item.comment}</td>
+                    <td class="p-3">
+                        ${item.media ? `<span class="text-xs text-sawah-600 font-bold underline"><a href="${formatImageUrl(item.media)}" target="_blank">Lihat Media</a></span>` : '<span class="text-xs text-gray-400">Tanpa Media</span>'}
+                    </td>
+                    <td class="p-3 text-center">
+                        <button onclick="deleteReview('${item.id}')" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs shadow">
+                            <i class="fa-solid fa-trash"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteReview(id) {
+            if(confirm('Apakah Anda yakin ingin menghapus ulasan ini?')) {
+                reviewsList = reviewsList.filter(r => r.id !== id);
+                cloudSave('buning_reviews', reviewsList);
+                renderReviewsList();
+                renderAdminReviewsTable();
+                updateDashboardStats();
+                showToast('Ulasan berhasil dihapus!');
+            }
+        }
+
+        function openMenuFormModal(isEdit = false) {
+            document.getElementById('menuFormModal').classList.remove('hidden');
+            document.getElementById('menuFormTitle').innerText = isEdit ? 'Edit Menu' : 'Tambah Menu Baru';
+            if(!isEdit) {
+                document.getElementById('menuCrudForm').reset();
+                document.getElementById('menuId').value = '';
+            }
+        }
+
+        function closeMenuFormModal() {
+            document.getElementById('menuFormModal').classList.add('hidden');
+        }
+
+        function handleSaveMenu(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('menuId').value;
+            const name = document.getElementById('menuName').value.trim();
+            const category = document.getElementById('menuCategory').value;
+            const price = parseFloat(document.getElementById('menuPrice').value);
+            const image = document.getElementById('menuImageUrl').value.trim();
+            const desc = document.getElementById('menuDesc').value.trim();
+
+            if(id) {
+                const index = menuList.findIndex(m => m.id === id);
+                if(index > -1) {
+                    menuList[index] = { id, name, category, price, image, desc };
+                    showToast('Menu diperbarui!');
+                }
+            } else {
+                const newId = 'm_' + Date.now();
+                menuList.push({ id: newId, name, category, price, image, desc });
+                showToast('Menu baru ditambahkan!');
+            }
+
+            cloudSave('buning_menus', menuList);
+            renderMenuItems();
+            renderAdminMenuTable();
+            updateDashboardStats();
+            closeMenuFormModal();
+        }
+
+        function editMenu(id) {
+            const item = menuList.find(m => m.id === id);
+            if(!item) return;
+
+            openMenuFormModal(true);
+            document.getElementById('menuId').value = item.id;
+            document.getElementById('menuName').value = item.name;
+            document.getElementById('menuCategory').value = item.category;
+            document.getElementById('menuPrice').value = item.price;
+            document.getElementById('menuImageUrl').value = item.image;
+            document.getElementById('menuDesc').value = item.desc;
+        }
+
+        function deleteMenu(id) {
+            if(confirm('Apakah Anda yakin ingin menghapus menu ini?')) {
+                menuList = menuList.filter(m => m.id !== id);
+                cloudSave('buning_menus', menuList);
+                renderMenuItems();
+                renderAdminMenuTable();
+                updateDashboardStats();
+                showToast('Menu berhasil dihapus!');
+            }
+        }
+
+        function renderAdminGalleryTable() {
+            const body = document.getElementById('adminGalleryTableBody');
+            body.innerHTML = galleryList.map(item => `
+                <tr class="hover:bg-sawah-50/50 transition-colors">
+                    <td class="p-3">
+                        <img src="${formatImageUrl(item.image)}" alt="${item.title}" class="w-16 h-12 object-cover rounded-lg border border-gray-200">
+                    </td>
+                    <td class="p-3 font-bold text-gray-800">${item.title}</td>
+                    <td class="p-3 text-gray-600 text-xs">${item.desc}</td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="editGallery('${item.id}')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-bold text-xs shadow">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                        </button>
+                        <button onclick="deleteGallery('${item.id}')" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs shadow">
+                            <i class="fa-solid fa-trash"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openGalleryFormModal(isEdit = false) {
+            document.getElementById('galleryFormModal').classList.remove('hidden');
+            document.getElementById('galleryFormTitle').innerText = isEdit ? 'Edit Foto Galeri' : 'Tambah Foto Galeri Baru';
+            if(!isEdit) {
+                document.getElementById('galleryCrudForm').reset();
+                document.getElementById('galleryId').value = '';
+            }
+        }
+
+        function closeGalleryFormModal() {
+            document.getElementById('galleryFormModal').classList.add('hidden');
+        }
+
+        function handleSaveGallery(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('galleryId').value;
+            const title = document.getElementById('galleryTitle').value.trim();
+            const image = document.getElementById('galleryImageUrl').value.trim();
+            const desc = document.getElementById('galleryDesc').value.trim();
+
+            if(id) {
+                const index = galleryList.findIndex(g => g.id === id);
+                if(index > -1) {
+                    galleryList[index] = { id, title, image, desc };
+                    showToast('Foto galeri diperbarui!');
+                }
+            } else {
+                const newId = 'g_' + Date.now();
+                galleryList.push({ id: newId, title, image, desc });
+                showToast('Foto galeri baru ditambahkan!');
+            }
+
+            cloudSave('buning_gallery', galleryList);
+            renderGalleryItems();
+            renderAdminGalleryTable();
+            updateDashboardStats();
+            closeGalleryFormModal();
+        }
+
+        function editGallery(id) {
+            const item = galleryList.find(g => g.id === id);
+            if(!item) return;
+
+            openGalleryFormModal(true);
+            document.getElementById('galleryId').value = item.id;
+            document.getElementById('galleryTitle').value = item.title;
+            document.getElementById('galleryImageUrl').value = item.image;
+            document.getElementById('galleryDesc').value = item.desc;
+        }
+
+        function deleteGallery(id) {
+            if(confirm('Apakah Anda yakin ingin menghapus foto galeri ini?')) {
+                galleryList = galleryList.filter(g => g.id !== id);
+                cloudSave('buning_gallery', galleryList);
+                renderGalleryItems();
+                renderAdminGalleryTable();
+                updateDashboardStats();
+                showToast('Foto galeri dihapus!');
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = msg;
+            if(isError) {
+                toast.classList.replace('bg-sawah-800', 'bg-red-700');
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-white text-lg';
+            } else {
+                toast.classList.replace('bg-red-700', 'bg-sawah-800');
+                toastIcon.className = 'fa-solid fa-circle-check text-amber-400 text-lg';
+            }
+
+            toast.classList.replace('opacity-0', 'opacity-100');
+            toast.classList.replace('translate-y-20', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.replace('opacity-100', 'opacity-0');
+                toast.classList.replace('translate-y-0', 'translate-y-20');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
